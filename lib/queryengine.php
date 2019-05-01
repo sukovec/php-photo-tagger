@@ -1,13 +1,5 @@
 <?php
 
-$tags = file('tags.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-$vars = array();
-foreach($tags as $tag) {
-	$vars[$tag] = false;
-}
-
-
 class QueryEngine {
 	private $query;
 	private $args;

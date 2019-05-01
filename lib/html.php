@@ -46,6 +46,27 @@ margin-top: 50px;
 	border-radius: 1em;
 	background: #C0FFC0;
 }
+
+/* image-checkboxes */
+.imgcheck {
+	display: inline-block;
+}
+
+.imgcheck input {
+	display: none;
+}
+
+.imgcheck label { 
+	display: block;
+	border: 6px solid #FF0000;
+}
+
+.imgcheck input:checked + label {
+	border: 6px solid #00FF00;
+}
+
+/* tag-checkboxes */
+
 .cbox {
 	display: inline-block;
 }

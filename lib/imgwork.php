@@ -211,7 +211,7 @@ class ImageFolderList {
 		return $ao->getIterator();
 	}
 
-	public function getImgList($id) {
+	public function getImgList($id): ImageListCsv {
 		$nm = explode("/", $id);
 		if (count($nm) != 1 && count($nm) != 2)
 			throw new Exception("Bad ID, ${id}");

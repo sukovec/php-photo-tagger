@@ -1,3 +1,4 @@
+!place:between,cdmx,amecameca,iztaccihuatl,puebla,malinche,tlaxcala,queretaro,leon,guadalajara,barrancooblata,cdguzman,ndcolima,colima,manzanillo,sanjuandealima,maruata,zihuatanejo,acapulco,sanmarcos,jameltepec,ptoescondido,cdoaxaca,cuajimoloyas,latuvi,puebmancomubenitojuarez,mitla,hiervedelagua,juchitan,tapanatepec,tuxla,chiapadecorso,sancristobal,canonsumidero
 saryk
 sukoun
 room
@@ -9,7 +10,7 @@ ciudad
 mountain
 travel
 ocean
-animal
+animal:dog,cat,horse,donkey,butterfly,cicade,insect,bird,
 beetle
 vehiculos
 streetart

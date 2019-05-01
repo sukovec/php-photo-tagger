@@ -13,7 +13,10 @@ foreach ($itr as $dir => $dirobj) {
 	echo "<li>";
 	echo "<a href='list-folder.php?id=", $dirobj->getPath(), "'>";
 	echo $dir;
-        echo "</a>";
+        echo "</a> | ";
+
+	echo "<a href='multitag.php?dir=", $dirobj->getPath(), "'>MULTITAG</a>";
+
         $cnt = $dirobj->count();
         $utc = $dirobj->untaggedCount();
         $cls = "";
