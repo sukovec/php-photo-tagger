@@ -35,7 +35,7 @@ if (!inget("tag")) {
 
 
 		echo "<div class='imgcheck'>";
-		echo "<input type='checkbox' name='tag_${imgid}' value='${_GET["tag"]}' id='tag_${imgid}' />";
+		echo "<input type='checkbox' name='${imgid}' value='${_GET["tag"]}' id='tag_${imgid}' />";
 		echo "<label for='tag_${imgid}'><img src='getimg.php?type=thumb&amp;img=${imgid}' width='175' /></label>";
 		echo "</div>";
 	}
