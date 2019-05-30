@@ -21,5 +21,5 @@ $data = Array(
 $persists->set($uid, $data);
 
 header("HTTP/1.1 307 See Other");
-header("Location: /persist?id=" . $uid);
+header("Location: /persist/" . $uid);
 
