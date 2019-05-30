@@ -14,7 +14,7 @@ $uid = uniqid();
 
 $data = Array( 
 	"img" => $img->getId(),
-	"seen" => { "full" => 0, "thumb" => 0, "raw" => 0 ],
+	"seen" => [ "full" => 0, "thumb" => 0, "raw" => 0 ],
 	"adt" => array_key_exists("adt", $_GET) ? $_GET["adt"] : null
 );
 
