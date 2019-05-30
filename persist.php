@@ -8,12 +8,12 @@ $imgs = new ImageFolderList();
 $img = $imgs->getImgById($_GET["img"]);
 
 $options = ['dir' => PHPATH, "ext" => ".persist" ];
-$persists = new Flintstone('fotolinks', $options);
+$persists = new Flintstone\Flintstone('fotolinks', $options);
 
 $uid = uniqid();
 
 $data = Array( 
-	"img" => $img->getImgId(),
+	"img" => $img->getId(),
 	"seen" => 0, 
 	"adt" => array_key_exists("adt", $_GET) ? $_GET["adt"] : null
 );
