@@ -1,5 +1,6 @@
 {
     "require": {
-        "parsecsv/php-parsecsv": "^1.1"
+        "parsecsv/php-parsecsv": "^1.1",
+        "fire015/flintstone": "^2.2"
     }
 }
