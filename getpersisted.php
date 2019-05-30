@@ -14,11 +14,11 @@ $persists = new Flintstone\Flintstone('fotolinks', $options);
 	"adt" => array_key_exists("adt", $_GET) ? $_GET["adt"] : null
 );*/
 
+if (!inget("type")) $_GET["type"] = "full";
 $data = $persists->get($_GET["id"]);
-$data["seen"]++;
+$data["seen"][$_GET["type"]]++;
 $persists->set($_GET["id"], $data);
 
-if (!inget("type")) $_GET["type"] = "full";
 $_GET["img"] = $data["img"];
 
 include "getimg.php";
