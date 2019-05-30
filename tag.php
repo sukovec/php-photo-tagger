@@ -51,7 +51,8 @@ if ($img->isRaw()) {
 	echo "<a href='getimg.php?type=raw&amp;img=${_GET["img"]}&amp;down=true'>RAW</a> | ";
 }
 echo "<a href='getimg.php?type=full&amp;img=${_GET["img"]}&amp;down=true'>DOWN</a> | ";
-echo "<a href='getimg.php?type=full&amp;img=${_GET["img"]}'>FULL</a>";
+echo "<a href='getimg.php?type=full&amp;img=${_GET["img"]}'>FULL</a> | ";
+echo "<a href='persist.php?img=${_GET["img"]}'>PERSIST</a>";
 echo "</div>";
 
 
