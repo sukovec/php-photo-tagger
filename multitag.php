@@ -33,9 +33,9 @@ if (!inget("tag")) {
 		$img = $imgs->getImage($i);
 		$imgid = $img->getId();
 
-
+		echo "<input type='hidden' name='${imgid}' value='RES:${_GET["tag"]}' />"; //this may not work in other languages or frameworks
 		echo "<div class='imgcheck'>";
-		echo "<input type='checkbox' name='${imgid}' value='${_GET["tag"]}' id='tag_${imgid}' />";
+		echo "<input type='checkbox' name='${imgid}' value='SET:${_GET["tag"]}' id='tag_${imgid}' />";
 		echo "<label for='tag_${imgid}'><img src='getimg.php?type=thumb&amp;img=${imgid}' width='175' /></label>";
 		echo "</div>";
 	}

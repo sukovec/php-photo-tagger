@@ -8,11 +8,13 @@ if (!inget("dir"))
 $tagwor = new TagWork();
 $imgs = new ImageFolderList();
 
-foreach $($_POST as $imgid => $tag) {
+foreach ($_POST as $imgid => $tag) {
 	$img = $imgs->getImgById($imgid);
 
-	$tags = $img->getTags();
-	// pridat popripade zmenit prisusny tag
+	$tagset = new ImageTagSet($img);
+
+	print_r($tagset);
+
 }
 
 print_r($_GET);

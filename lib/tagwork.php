@@ -1,5 +1,9 @@
 <?php
 
+define("TAG_SET", "TGS");
+define("TAG_DEL", "TGR");
+define("TAG_RES", "TGN");
+
 class TagWork {
 	private $basetags;
 	public function __construct() {
@@ -125,4 +129,47 @@ class SubTag {
 	public function getNotation(): string {
 		return $this->parent->getBaseName() . ":" . $this->subtag;
 	}
+}
+
+class ImageTagSet {
+	private $tagset;
+	public function __construct(ImageCsvLine $img) {
+		$this->tagset = array_map(function($tg) { return new Tag($tg); },  $img->getTags());
+	}
+
+	// tag command is in form CMD:tag:subtag (CMD is one of the defines on the beginning of this file)
+	public function tagCommand(string $tagcmd) {
+		$tg = explode(":", $tagcmd, 2);
+		if ($tg[0] == TAG_SET) 
+			$this->setTag($tg[1]);
+		else if ($tg[0] == TAG_DEL)
+			$this->removeTag($tg[1]);
+		else if ($tg[0] == TAG_RES)
+			$this->emptySubtag($tg[1]);
+		else
+			throw new Exception("Unknown tag command ${tg[0]}");
+	}
+
+	public function setTag(string $tag) {
+
+	}
+
+	public function removeTag(string $tag) {
+
+	}
+
+	public function emptySubtag(string $tag) {
+
+	}
+
+	public static function tagCmdSet(string $tag) {
+	}
+
+	public static function tagCmdDel(string $tag) {
+	}
+
+	public static function tagCmdRes(string $tag) {
+	}
+
+	
 }
