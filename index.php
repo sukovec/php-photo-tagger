@@ -5,14 +5,6 @@ require "base.php";
 
 output_head();
 
-?>
-
-<div>
-	<div><label>
-</div>
-
-<?
-
 echo "<ul>";
 
 $dirl = new ImageFolderList();
