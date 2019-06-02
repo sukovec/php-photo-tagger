@@ -5,7 +5,13 @@ require "base.php";
 
 output_head();
 
-echo "<div>saryk | sukofon | fotak</div>";
+?>
+
+<div>
+	<div><label>
+</div>
+
+<?
 
 echo "<ul>";
 
