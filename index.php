@@ -5,6 +5,8 @@ require "base.php";
 
 output_head();
 
+echo "<div>saryk | sukofon | fotak</div>";
+
 echo "<ul>";
 
 $dirl = new ImageFolderList();
