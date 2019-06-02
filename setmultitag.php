@@ -13,10 +13,13 @@ foreach ($_POST as $imgid => $tag) {
 
 	$tagset = new ImageTagSet($img);
 
+	echo "<h1>Image $imgid tagset</h1>";
 	print_r($tagset);
 
 }
 
+echo "<h1>GET</h1>";
 print_r($_GET);
 
+echo "<h1>POST</h1>";
 print_r($_POST);
