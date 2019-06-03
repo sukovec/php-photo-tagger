@@ -16,7 +16,9 @@ foreach ($_POST as $imgid => $tag) {
 	
 
 	echo "<h1>Image $imgid tagset, set it to $tag</h1>";
-	print_r($tagset);
+	echo "<h3>Before...</h3><pre>";print_r($tagset);echo "</pre>";
+	$tagset->tagCommand($tag);
+	echo "<h3>After...</h3><pre>";print_r($tagset);echo "</pre>";
 
 }
 
