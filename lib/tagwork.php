@@ -198,7 +198,7 @@ class ImageTagSet {
 		$rmtag = Tag::getBaseName($tag);
 
 		if (array_key_exists($rmtag, $this->tagset)) {
-			delete $this->tagset[$rmtag]; 
+			unset($this->tagset[$rmtag]);
 			return;
 		}
 
