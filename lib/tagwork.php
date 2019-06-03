@@ -127,7 +127,7 @@ class Tag {
 
 	public static function parseBaseName(string $tag) {
 		$tg = explode(":", $tag);
-		return $tg[0][0] == "1" ? substr($tg[0], 1) : $tg[0];
+		return $tg[0][0] == "!" ? substr($tg[0], 1) : $tg[0];
 	}
 
 	public static function parseSelectedName(string $tag) {
