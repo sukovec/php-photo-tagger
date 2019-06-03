@@ -48,7 +48,7 @@ class TagWork {
 		if (!array_key_exists($bs, $this->basetags))
 			throw new Exception("Non-existent tag");
 
-		$ret = new Tag($this->basetags[$basename]);
+		$ret = new Tag($this->basetags[$bs]);
 		if ($sel !== null)
 			$ret->setSelected($sel);
 
