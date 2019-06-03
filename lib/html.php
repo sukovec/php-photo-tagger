@@ -65,6 +65,10 @@ margin-top: 50px;
 	border: 6px solid #00FF00;
 }
 
+.imgcheck.othertag label {
+	border: 6px solid #0000FF;
+}
+
 /* tag-checkboxes */
 
 .cbox {
