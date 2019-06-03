@@ -5,13 +5,13 @@ require "base.php";
 if (!inget("dir"))
 	throw new Exception("dir not set");
 
-$tagwor = new TagWork();
+$tagwork = new TagWork();
 $imgs = new ImageFolderList();
 
 foreach ($_POST as $imgid => $tag) {
 	$img = $imgs->getImgById($imgid);
 
-	$tagset = new ImageTagSet($img);
+	$tagset = new ImageTagSet($img, $tagwork);
 
 	echo "<h1>Image $imgid tagset</h1>";
 	print_r($tagset);
