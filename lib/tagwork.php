@@ -183,7 +183,7 @@ class ImageTagSet {
 	public function setTag(string $tag) {
 		$newtg = $this->tw->getTag($tag);
 
-		if (array_key_exists($tg->getBaseName(), $this->tagset)) {
+		if (array_key_exists($newtg->getBaseName(), $this->tagset)) {
 			$curtg = $this->tagset[$tg->getBaseName()];
 			$subt = $newtg->getSelectedSubtag();
 
