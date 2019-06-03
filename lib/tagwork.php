@@ -232,7 +232,7 @@ class ImageTagSet {
 
 		$tg = Tag::parseBaseName($tag);
 
-		$sel = $this->tagset[$tg]->getSelected();
+		$sel = $this->tagset[$tg]->getSelectedSubtag();
 		if ($sel === null) 
 			return false;
 
