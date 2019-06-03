@@ -13,7 +13,9 @@ foreach ($_POST as $imgid => $tag) {
 
 	$tagset = new ImageTagSet($img, $tagwork);
 
-	echo "<h1>Image $imgid tagset</h1>";
+	
+
+	echo "<h1>Image $imgid tagset, set it to $tag</h1>";
 	print_r($tagset);
 
 }
