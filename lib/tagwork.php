@@ -42,7 +42,7 @@ class TagWork {
 	}
 
 	public function getTag(string $tag) {
-		$bs = Tag::getBaseName($tag);
+		$bs = Tag::parseBaseName($tag);
 		$sel = Tag::parseSelectedName($tag);
 
 		if (!array_key_exists($bs, $this->basetags))
@@ -195,7 +195,7 @@ class ImageTagSet {
 	}
 
 	public function removeTag(string $tag) {
-		$rmtag = Tag::getBaseName($tag);
+		$rmtag = Tag::parseBaseName($tag);
 
 		if (array_key_exists($rmtag, $this->tagset)) {
 			unset($this->tagset[$rmtag]);
@@ -206,7 +206,7 @@ class ImageTagSet {
 	}
 
 	public function emptySubtag(string $tag) {
-		$emtag = Tag::getBaseName($tag);
+		$emtag = Tag::parseBaseName($tag);
 
 		if (array_key_exists($emtag, $this->tagset)) {
 			$this->tagset[$emtag]->setSelected(null);
