@@ -7,7 +7,17 @@ define("TAG_RES", "TGN");
 class TagWork {
 	private $basetags;
 	public function __construct() {
-		$this->basetags = file(PHPATH . '/tags.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		$src = file(PHPATH . '/tags.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+
+		$this->basetags = array();
+		foreach ($src as $tg) {
+			$basename = Tag::parseBaseName($tg);
+			if (array_key_exists($this->basetags, $basename)) 
+				throw new Exception("One basename used multiple times");
+
+			$this->basetags[$basename] = $tg;
+		}
 	}
 
 	public function getTags($listused = array()) {
@@ -20,13 +30,27 @@ class TagWork {
 			$used[$base] = $selected;
 		}
 
-		foreach($this->basetags as $tag) {
-			$tagobj = new Tag($tag);
+		foreach($this->basetags as $base => $tagline) {
+			$tagobj = new Tag($tagline);
 			$ret[] = $tagobj;
 			if (array_key_exists($tagobj->getBaseName(), $used)) {
 				$tagobj->setSelected($used[$tagobj->getBaseName()]);
 			}
 		}
+
+		return $ret;
+	}
+
+	public function getTag(string $tag) {
+		$bs = Tag::getBaseName($tag);
+		$sel = Tag::parseSelectedName($tag);
+
+		if (!array_key_exists($bs, $this->basetags))
+			throw new Exception("Non-existent tag");
+
+		$ret = new Tag($this->basetags[$basename]);
+		if ($sel !== null)
+			$ret->setSelected($sel);
 
 		return $ret;
 	}
@@ -133,8 +157,14 @@ class SubTag {
 
 class ImageTagSet {
 	private $tagset;
-	public function __construct(ImageCsvLine $img) {
-		$this->tagset = array_map(function($tg) { return new Tag($tg); },  $img->getTags());
+	private $tw;
+	public function __construct(ImageCsvLine $img, TagWork $tw) {
+		$this->tw = $tw;
+		$this->tagset = Array();
+		foreach($img->getTags() as $tag) {
+			$tg = $tw->getTag($tg);
+			$tagset[$tg->getBaseName()] = $tg;
+		}
 	}
 
 	// tag command is in form CMD:tag:subtag (CMD is one of the defines on the beginning of this file)
@@ -151,15 +181,39 @@ class ImageTagSet {
 	}
 
 	public function setTag(string $tag) {
+		$newtg = $this->tw->getTag($tag);
 
+		if (array_key_exists($tg->getBaseName(), $this->tagset)) {
+			$curtg = $this->tagset[$tg->getBaseName()];
+			$subt = $newtg->getSelectedSubtag();
+
+			if ($subt !== null)
+				$curtg->setSelected($subt->getName());
+		} else {
+			$this->tagset[$newtg->getBaseName()] = $newtg;
+		}
 	}
 
 	public function removeTag(string $tag) {
+		$rmtag = Tag::getBaseName($tag);
 
+		if (array_key_exists($rmtag, $this->tagset)) {
+			delete $this->tagset[$rmtag]; 
+			return;
+		}
+
+		throw new Exception("Cannot delete non-existent tag");
 	}
 
 	public function emptySubtag(string $tag) {
+		$emtag = Tag::getBaseName($tag);
 
+		if (array_key_exists($emtag, $this->tagset)) {
+			$this->tagset[$emtag]->setSelected(null);
+			return;
+		}
+
+		throw new Exception("Cannot reset non-existent tag");
 	}
 
 	public static function tagCmdSet(string $tag) {
