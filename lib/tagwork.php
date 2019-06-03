@@ -13,7 +13,7 @@ class TagWork {
 		$this->basetags = array();
 		foreach ($src as $tg) {
 			$basename = Tag::parseBaseName($tg);
-			if (array_key_exists($this->basetags, $basename)) 
+			if (array_key_exists($basename, $this->basetags)) 
 				throw new Exception("One basename used multiple times");
 
 			$this->basetags[$basename] = $tg;
