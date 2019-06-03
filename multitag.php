@@ -35,7 +35,7 @@ if (!inget("tag")) {
 
 		$imgid = $img->getId();
 		
-		if ($tagset->hasTag($_GET["tag"]))
+		if ($tagset->hasBaseTag($_GET["tag"]))
 			echo "ma tag";
 
 		if ($tagset->hasFullTag($_GET["tag"]))
