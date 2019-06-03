@@ -1,8 +1,8 @@
 <?php
 
-define("TAG_SET", "TGS");
-define("TAG_DEL", "TGR");
-define("TAG_RES", "TGN");
+define("TAG_SET", "SET");
+define("TAG_DEL", "DEL");
+define("TAG_RES", "RES");
 
 class TagWork {
 	private $basetags;
