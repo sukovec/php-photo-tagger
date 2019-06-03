@@ -161,6 +161,7 @@ class ImageTagSet {
 	public function __construct(ImageCsvLine $img, TagWork $tw) {
 		$this->tw = $tw;
 		$this->tagset = Array();
+		print_r($img->getTags());
 		foreach($img->getTags() as $strtag) {
 			$tg = $tw->getTag($strtag);
 			$tagset[$tg->getBaseName()] = $tg;
