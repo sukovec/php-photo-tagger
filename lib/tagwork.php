@@ -102,6 +102,9 @@ class Tag {
 	}
 
 	public function getBaseName(): string {
+		if ($this->hidden) 
+			return "!" . $this->tag;
+
 		return $this->tag;
 	}
 
