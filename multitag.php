@@ -31,7 +31,16 @@ if (!inget("tag")) {
 
 	for ($i = 0; $i < $imgs->count(); $i++) {
 		$img = $imgs->getImage($i);
+		$tagset = new ImageTagSet($img, $tgs);
+
 		$imgid = $img->getId();
+		
+		if ($tagset->hasTag($_GET["tag"]))
+			echo "ma tag";
+
+		if ($tagset->hasFullTag($_GET["tag"]))
+			echo "ma full tag";
+
 
 		echo "<input type='hidden' name='${imgid}' value='RES:${_GET["tag"]}' />"; //this may not work in other languages or frameworks
 		echo "<div class='imgcheck'>";
