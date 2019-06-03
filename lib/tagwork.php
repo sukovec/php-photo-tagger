@@ -216,13 +216,13 @@ class ImageTagSet {
 		throw new Exception("Cannot reset non-existent tag");
 	}
 
-	public function hasBaseTag(string $tag): boolean {
+	public function hasBaseTag(string $tag): bool {
 		$tg = Tag::parseBaseName($tag);
 
 		return array_key_exists($tg, $this->tagset);
 	}
 
-	public function hasFullTag(string $tag): boolean {
+	public function hasFullTag(string $tag): bool {
 		if (!$this->hasBaseTag($tag)) 
 			return false;
 
