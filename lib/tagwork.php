@@ -54,6 +54,21 @@ class TagWork {
 
 		return $ret;
 	}
+
+	public function getDirectorySubtagSet(ImageListCsv $imgs, string $tag) {
+		$set = array();
+		for ($i = 0; $i < $imgs->count(); $i++) {
+			$img = $imgs->getImage($i);
+			$tagset = new ImageTagSet($img, $this);
+
+			$tg = $tagset->getTag($tag);
+			if ($tg === null) continue;
+
+			$set[$tg->getNotation()] = $tg;
+		}
+
+		return $set;
+	}
 }
 
 class Tag {
@@ -82,6 +97,10 @@ class Tag {
 				$this->subs[] = $cur;
 			}
 		}
+	}
+
+	public function __toString() {
+		return $this->getNotation();
 	}
 
 	public function setSelected($selected) {
@@ -188,6 +207,15 @@ class ImageTagSet {
 			$this->emptySubtag($tg[1]);
 		else
 			throw new Exception("Unknown tag command ${tg[0]}");
+	}
+
+	public function getTag(string $tag) {
+		$tg = Tag::parseBaseName($tag);
+
+		if (!array_key_exists($tg, $this->tagset))
+			return null;
+
+		return $this->tagset[$tg];
 	}
 
 	public function setTag(string $tag) {
