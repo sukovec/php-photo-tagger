@@ -5,31 +5,21 @@ require "base.php";
 
 output_head();
 
-echo "<ul>";
+echo "<table>";
+echo "<tr><th>Folder</th><th>MultiTag</th><th>Count total</th><th>Untagged</th><th>Places</th></tr>";
 
 $tagw = new TagWork();
 
 $dirl = new ImageFolderList();
 $itr = $dirl->getIterator();
 
-$lastplaces = "";
-
 foreach ($itr as $dir => $dirobj) {
-	// first display location
-	$places = implode(", ", array_map(function($itm) { return $itm->getSelectedSubtag()->getName(); }, $tagw->getDirectorySubtagSet($dirobj, "place")));
-	if ($places != $lastplaces) {
-		echo "<li><h2>$places</h2></li>";
-		$lastplaces = $places;
-	}
-
-
-
-	echo "<li>";
-	echo "<a href='list-folder.php?id=", $dirobj->getPath(), "'>";
+	echo "<tr>";
+	echo "<td><a href='list-folder.php?id=", $dirobj->getPath(), "'>";
 	echo $dir;
-        echo "</a> | ";
+        echo "</a></td>";
 
-	echo "<a href='multitag.php?dir=", $dirobj->getPath(), "'>MULTITAG</a>";
+	echo "<td><a href='multitag.php?dir=", $dirobj->getPath(), "'>MULTITAG</a></td>";
 
         $cnt = $dirobj->count();
         $utc = $dirobj->untaggedCount();
@@ -41,13 +31,18 @@ foreach ($itr as $dir => $dirobj) {
         else
                 $cls = "notbad";
 
-        echo " ::: Total: ", $cnt;
-        echo " ::: <span class='${cls}'>Untagged: ", $utc, "</span>";
+        echo "<td>$cnt</td>";
+        echo "<td class='${cls}'>${utc}</td>";
+
+	$places = implode(", ", array_map(function($itm) { return $itm->getSelectedSubtag()->getName(); }, $tagw->getDirectorySubtagSet($dirobj, "place")));
+	echo "<td>${places}</td>";
 
 
-        echo "</li>";
+
+
+        echo "</tr>";
 }
 
-echo "</ul>";
+echo "</table>";
 
 output_foot();
