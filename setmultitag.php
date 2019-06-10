@@ -17,5 +17,7 @@ foreach ($_POST as $imgid => $tag) {
 
 	$tagset->tagCommand($tag);
 	$tagset->saveTags();
-
 }
+
+header("HTTP/1.1 307 See Other");
+header("Location: index.php");
