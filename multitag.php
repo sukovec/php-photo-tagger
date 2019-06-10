@@ -44,9 +44,8 @@ if (!inget("tag")) {
 		if ($tagset->hasFullTag($_GET["tag"]))
 			$havefull = true;
 
-
 		if ($havefull) // print hidden for resetting, when unselected checkbox
-			echo "<input type='hidden' name='${imgid}' value='RES:${_GET["tag"]}' />"; //this may not work in other languages or frameworks
+			echo "<input type='hidden' name='${imgid}' value='DEL:${_GET["tag"]}' />"; //this may not work in other languages or frameworks
 
 		echo "<div class='imgcheck" . ($havetag ? " othertag" : "") . "'>";
 		echo "<input type='checkbox' name='${imgid}' value='SET:${_GET["tag"]}' id='tag_${imgid}' " . ($havefull ? "checked='checked'" : "") . " />";

@@ -125,6 +125,14 @@ class Tag {
 		return $this->selected;
 	}
 
+	public function getNotation(): string {
+		$sel = $this->getSelectedSubtag();
+		if ($sel !== null)
+			return $sel->getNotation();
+		else 
+			return $this->getBaseName();
+	}
+
 	public static function parseBaseName(string $tag) {
 		$tg = explode(":", $tag);
 		return $tg[0][0] == "!" ? substr($tg[0], 1) : $tg[0];
@@ -158,8 +166,10 @@ class SubTag {
 class ImageTagSet {
 	private $tagset;
 	private $tw;
+	private $img;
 	public function __construct(ImageCsvLine $img, TagWork $tw) {
 		$this->tw = $tw;
+		$this->img = $img;
 		$this->tagset = Array();
 		foreach($img->getTags() as $strtag) {
 			$tg = $tw->getTag($strtag);
@@ -184,7 +194,7 @@ class ImageTagSet {
 		$newtg = $this->tw->getTag($tag);
 
 		if (array_key_exists($newtg->getBaseName(), $this->tagset)) {
-			$curtg = $this->tagset[$tg->getBaseName()];
+			$curtg = $this->tagset[$newtg->getBaseName()];
 			$subt = $newtg->getSelectedSubtag();
 
 			if ($subt !== null)
@@ -239,14 +249,9 @@ class ImageTagSet {
 		return $sel->getName() == $sb;
 	}
 
-	public static function tagCmdSet(string $tag) {
+	public function saveTags() {
+		$tags = array_map(function($itm) { return $itm->getNotation();}, $this->tagset);
+		$this->img->setTags($tags);
+		$this->img->save();
 	}
-
-	public static function tagCmdDel(string $tag) {
-	}
-
-	public static function tagCmdRes(string $tag) {
-	}
-
-	
 }
