@@ -1,8 +1,11 @@
 <?php
 
 
-function form_start($action, $method = "POST") {
-	return "<form action='${action}' method='${method}'>";
+function form_start($action, $method = "POST", $id=false) {
+	if ($id === false)
+		return "<form action='${action}' method='${method}'>";
+	else 
+		return "<form action='${action}' method='${method}' id='${id}'>";
 }
 
 function form_end() {

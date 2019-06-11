@@ -6,6 +6,22 @@ if (!inget("dir"))
 
 output_head();
 
+
+?>
+<script>
+
+function toggle(source, formid) {
+	var checkboxes = document.getElementById(formid).querySelectorAll('input[type="checkbox"]');
+	for (var i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i] != source)
+			checkboxes[i].checked = source.checked;
+	}
+}
+</script>
+
+
+<?php
+
 $tgs = new TagWork();
 
 if (!inget("tag")) {
@@ -27,7 +43,8 @@ if (!inget("tag")) {
 	$dirl = new ImageFolderList();
 	$imgs = $dirl->getImgList($_GET["dir"]);
 
-	echo form_start("setmultitag.php?dir=${_GET["dir"]}");
+	?> <label>Select all<input type="checkbox" onclick="toggle(this, 'theformular')" /></label> <?php
+	echo form_start("setmultitag.php?dir=${_GET["dir"]}", "POST", "theformular");
 
 	for ($i = 0; $i < $imgs->count(); $i++) {
 		$img = $imgs->getImage($i);
