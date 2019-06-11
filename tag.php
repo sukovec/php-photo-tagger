@@ -18,7 +18,7 @@ echo form_start("settag.php?img=${_GET["img"]}");
 $tags = $tgs->getTags($img->getTags());
 
 foreach($tags as $tag) {
-//	if ($tag->isHidden()) continue;
+	if ($tag->isHidden()) continue;
 	$basename = $tag->getBaseName();
 
 	$act = $tag->isChecked() ? " checked='checked' " : "";
