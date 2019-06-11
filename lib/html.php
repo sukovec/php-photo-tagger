@@ -22,6 +22,15 @@ function output_head($title = "Cau Saryku") {
 <html>
 <head><title><?php echo $title?></title>
 <style>
+
+.padded {
+	padding: 5px;
+}
+
+.greyback {
+	background-color: #C0C0C0;
+}
+
 .perfect {
         color: #000000;
 }
@@ -68,6 +77,17 @@ margin-top: 50px;
 .imgcheck.othertag label {
 	border: 6px solid #0000FF;
 }
+
+/* hideable "window" */
+
+.switchable label {
+	display: none;
+}
+
+.switchable input:checked + label {
+	display: block;
+}
+
 
 /* tag-checkboxes */
 
