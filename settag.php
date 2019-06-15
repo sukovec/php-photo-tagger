@@ -9,19 +9,29 @@ $dirl = new ImageFolderList();
 $tgs = new TagWork();
 
 $img = $dirl->getImgById($_GET["img"]);
-
 $img->setDesc($_POST["image_description"]);
 
-$tgs = array();
+
+$tagset = new ImageTagSet($img, $tgs); // current set
+$newset = array(); // newly set tags
 foreach($_POST as $key => $value) {
 		if (substr($key, 0, 4) != "tag_") continue;
 
-		$tgs[] = $value;
+		$bs = Tag::parseBaseName($value);
+		$newset[$bs] = true;
+
+		$tagset->setTag($value);
 }
 
-$img->setTags($tgs);
-$img->save();
 
+// loop through all tags and remove those unused
+foreach ($tagset->getTags() as $bsname => $tag) {
+	if (!array_key_exists($bsname, $newset)) {
+		$tagset->removeTag($bsname);
+	}
+}
+
+$tagset->saveTags();  // this will also call $img->save();
 
 $next = $img->getNext();
 header("HTTP/1.1 303 See Other");

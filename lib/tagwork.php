@@ -218,6 +218,16 @@ class ImageTagSet {
 		return $this->tagset[$tg];
 	}
 
+	public function getTags(): array {
+		$ret = array();
+
+		foreach($this->tagset as $tag) {
+			$ret[$tag->getBaseName()] = $tag;
+		}
+
+		return $ret;
+	}
+
 	public function setTag(string $tag) {
 		$newtg = $this->tw->getTag($tag);
 

@@ -18,7 +18,6 @@ echo form_start("settag.php?img=${_GET["img"]}");
 $tags = $tgs->getTags($img->getTags());
 
 foreach($tags as $tag) {
-	if ($tag->isHidden()) continue;
 	$basename = $tag->getBaseName();
 
 	$act = $tag->isChecked() ? " checked='checked' " : "";
@@ -29,8 +28,14 @@ foreach($tags as $tag) {
 		$subname = $sub->getName();
 
 	$display = $basename;
-	if ($tag->haveSubs()) $display = $basename . " (" . $subname . ")";
-	echo "<div class='cbox'><input type='checkbox' ${act} name='tag_${basename}' value='${basename}' id='tag_${basename}' /><label for='tag_${basename}'>${display}</label></div>";
+	if ($tag->haveSubs()) 
+		$display = $basename . " (" . $subname . ")";
+
+	if ($tag->isHidden() && $tag->isChecked())
+		echo "<input type='hidden' name='tag_{$basename}' value='${basename}' />";
+	else
+		echo "<div class='cbox'><input type='checkbox' ${act} name='tag_${basename}' value='${basename}' id='tag_${basename}' /><label for='tag_${basename}'>${display}</label></div>";
+
 }
 echo "<br /><div class='descript'><input type='text' name='image_description' value='", $img->getDesc(),"' /><input type='submit' value='yeah' /></div>";
 
