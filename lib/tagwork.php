@@ -228,6 +228,10 @@ class ImageTagSet {
 		return $ret;
 	}
 
+	/** Add or change tag to a tagset. $tag can be in base form or with selection
+	 *   - in case a tag is not set, just set it and set subtag if present
+	 *   - if a subtag is not present and tag is set, just leave the selection
+	 * */
 	public function setTag(string $tag) {
 		$newtg = $this->tw->getTag($tag);
 
