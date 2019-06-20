@@ -1,9 +1,11 @@
 <?php
 
+require "base.php";
+
+onlyPost();
+
 if (!array_key_exists("img", $_GET))
 	throw new Exception("No ID in get");
-
-require "base.php";
 
 $dirl = new ImageFolderList();
 $tgs = new TagWork();

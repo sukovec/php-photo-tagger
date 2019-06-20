@@ -2,6 +2,8 @@
 
 require "base.php";
 
+onlyPost();
+
 if (!inget("dir"))
 	throw new Exception("dir not set");
 
