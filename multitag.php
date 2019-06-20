@@ -4,7 +4,7 @@ require "base.php";
 if (!inget("dir"))
 	throw new Exception("No ID in get");
 
-output_head();
+output_head("Multi-tag one day");
 
 
 ?>
@@ -29,7 +29,7 @@ if (!inget("tag")) {
 
 	foreach ($tags as $tag) {
 		$base = $tag->getBaseName();
-		echo "<div class='multitag'><h3>${base}</h3>";
+		echo "<div class='multitag'><a href='multitag.php?dir=${_GET["dir"]}&amp;tag=${base}'><h3>${base}</h3></a>";
 
 		foreach($tag->getSubtags() as $sub) {
 			$canotag = $sub->getNotation();
