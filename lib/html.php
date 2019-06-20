@@ -129,6 +129,6 @@ margin-top: 50px;
 
 </style>
 <body>
-<a href="index.php">Index</a> | <a href="query.php">Query</a> | <a href="taglist.php">TagList</a> | <a href="persistlist.php">Persistent image link list</a> |<br />
+<a href="index.php">Index</a> | <a href="query.php">Query</a> | <a href="taglist.php">TagList</a> | <a href="persistlist.php">Persistent image link list</a> | <a href="multitag2.php">Multitag by tag</a> | <br />
 <?php
 }
