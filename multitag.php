@@ -44,7 +44,7 @@ if (!inget("tag")) {
 	$imgs = $dirl->getImgList($_GET["dir"]);
 
 	?> <label>Select all<input type="checkbox" onclick="toggle(this, 'theformular')" /></label> <?php
-	echo form_start("setmultitag.php?dir=${_GET["dir"]}", "POST", "theformular");
+	echo form_start("setmultitag.php", "POST", "theformular");
 
 	for ($i = 0; $i < $imgs->count(); $i++) {
 		$img = $imgs->getImage($i);

@@ -4,9 +4,6 @@ require "base.php";
 
 onlyPost();
 
-if (!inget("dir"))
-	throw new Exception("dir not set");
-
 $tagwork = new TagWork();
 $imgs = new ImageFolderList();
 

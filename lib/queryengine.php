@@ -32,7 +32,8 @@ class QueryEngine {
 	public function match($taglist) {
 		$args = array_fill(0, count($this->args), false);
 
-		foreach($taglist as $tag) {
+		foreach($taglist as $tagfull) {
+			$tag = Tag::parseBaseName($tagfull);
 			if (array_key_exists($tag, $this->order))
 				$args[$this->order[$tag]] = true;
 		}
