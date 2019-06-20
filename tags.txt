@@ -6,7 +6,7 @@ letters
 food
 camping
 nature
-ciudad
+ciudad:church,street
 mountain
 travel
 ocean
