@@ -66,7 +66,8 @@ if (!inget("tag")) {
 
 		echo "<div class='imgcheck" . ($havetag ? " othertag" : "") . "'>";
 		echo "<input type='checkbox' name='${imgid}' value='SET:${_GET["tag"]}' id='tag_${imgid}' " . ($havefull ? "checked='checked'" : "") . " />";
-		echo "<label for='tag_${imgid}'><img src='getimg.php?type=thumb&amp;img=${imgid}' width='175' /></label>";
+		$imgdesc = $img->getDesc();
+		echo "<label for='tag_${imgid}'><img src='getimg.php?type=thumb&amp;img=${imgid}' width='175' alt='${imgdesc}' title='${imgdesc}' /></label>";
 		echo "</div>";
 	}
 

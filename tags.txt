@@ -10,7 +10,7 @@ ciudad:church,street
 mountain
 travel
 ocean
-animal:dog,cat,horse,donkey,butterfly,cicade,insect,bird,
+animal:dog,cat,horse,donkey,butterfly,insect,bird,lizard
 beetle
 vehiculos
 streetart
