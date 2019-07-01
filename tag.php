@@ -2,6 +2,9 @@
 if (!array_key_exists("img", $_GET))
 	throw new Exception("No ID in get");
 
+if (array_key_exists("mywatchid", $_COOKIE))
+	exec("mosquitto_pub -t '/watch/${_COOKIE["mywatchid"]}' -m '${_GET["img"]}' > /dev/null 2>&1 &");
+
 require "base.php";
 
 output_head();
