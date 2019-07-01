@@ -16,7 +16,7 @@ output_head("Watch current, he");
 
 <script>
 
-var wsbroker = "vps.sukovec.cz"; // location.hostname;  // mqtt websocket enabled broker
+var wsbroker = location.hostname;  // mqtt websocket enabled broker
 var wsport = 9002; // port for above
 var client = new Paho.MQTT.Client(wsbroker, wsport, "/ws", "myclientid_" + parseInt(Math.random() * 100, 10));
 
@@ -31,7 +31,8 @@ client.onMessageArrived = function (message) {
 
 
 var options = {
-timeout: 3,
+	timeout: 3,
+	useSSL: true,
 	keepAliveInterval: 30,
 	onSuccess: function () {
 		console.log("CONNECTION SUCCESS");
