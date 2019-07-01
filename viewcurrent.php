@@ -35,7 +35,7 @@ timeout: 3,
 	keepAliveInterval: 30,
 	onSuccess: function () {
 		console.log("CONNECTION SUCCESS");
-		client.subscribe('/watch/<?php echo $_GET["ajdy"];?>', {qos: 1});
+		client.subscribe('/watch/<?php echo $watchID;?>', {qos: 1});
 	},
 	onFailure: function (message) {
 		console.log("CONNECTION FAILURE - " + message.errorMessage);
