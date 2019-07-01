@@ -8,6 +8,7 @@ camping
 nature:flower,unknownfruit,forest
 ciudad:church,street
 mountain
+archeology
 travel
 ocean
 animal:dog,cat,horse,donkey,butterfly,insect,bird,lizard
