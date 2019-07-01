@@ -9,7 +9,7 @@ $img = $imgs->getImgById($_GET["img"]);
 
 
 header("Cache-Control: public");
-header("Expires: Mon, 25 Jun 2019 21:31:12 GMT←");
+header("Expires: Mon, 25 Jun 2020 21:31:12 GMT←");
 
 $fname = "";
 switch($_GET["type"]) {
