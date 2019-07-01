@@ -6,6 +6,10 @@ require "base.php";
 
 output_head();
 
+echo "<h2>Folder ${_GET["id"]}</h2>";
+echo "<a href='multitag.php?dir=${_GET["id"]}'>Multitag this folder</a><br />";
+echo "<hr />";
+
 echo "<ul>";
 
 $dirl = new ImageFolderList();
