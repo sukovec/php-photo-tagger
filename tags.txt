@@ -5,7 +5,7 @@ room
 letters
 food
 camping
-nature
+nature:flower,unknownfruit,forest
 ciudad:church,street
 mountain
 travel

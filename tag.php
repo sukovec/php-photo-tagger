@@ -31,8 +31,11 @@ foreach($tags as $tag) {
 	if ($tag->haveSubs()) 
 		$display = $basename . " (" . $subname . ")";
 
-	if ($tag->isHidden() && $tag->isChecked())
-		echo "<input type='hidden' name='tag_{$basename}' value='${basename}' />";
+	if ($tag->isHidden()) {
+	       	if ($tag->isChecked())
+			echo "<input type='hidden' name='tag_{$basename}' value='${basename}' />";
+		// else - noop
+	}
 	else
 		echo "<div class='cbox'><input type='checkbox' ${act} name='tag_${basename}' value='${basename}' id='tag_${basename}' /><label for='tag_${basename}'>${display}</label></div>";
 
