@@ -26,7 +26,7 @@ client.onConnectionLost = function (responseObject) {
 client.onMessageArrived = function (message) {
 	console.log("RECEIVE ON " + message.destinationName + " PAYLOAD " + message.payloadString);
 
-	document.getElementById("finalimage").src="getimg.php?type=full&img=" + message.payloadString;
+	document.getElementById("finalimage").src="getimg.php?type=thumb&img=" + message.payloadString;
 };
 
 
