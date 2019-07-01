@@ -28,7 +28,7 @@ $tagw = new TagWork();
 	<input type="checkbox" name="cb_author" <?php if(inget("authors")) echo "checked='checked'"; ?> /> Select authors:
 	<label for="cb_author" class="padded greyback">
 		<h5>Select authors</h5>
-		<?php if (inget("filter")) $addquery = "&amp;filter=" . urlencode($_GET["filter"]); ?>
+		<?php $addquery = ""; if (inget("filter")) $addquery = "&amp;filter=" . urlencode($_GET["filter"]); ?>
 		<form action="index.php?authors=true<?php echo $addquery;?>">
 			<label><input type="checkbox" name="author[]" value="sarka" />Sarka</label> | 
 			<label><input type="checkbox" name="author[]" value="sukofon" />Sukofon</label> | 

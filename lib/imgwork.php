@@ -142,7 +142,7 @@ class ImageListCsv {
 		$this->csv->input_encoding = $this->csv->output_encoding = "utf-8";
 		$this->csv->linefeed = "\n";
 		$this->csv->fields = array("thumb", "original", "desc", "tags");
-		if (!$this->csv->parse($filepath)) {
+		if (!$this->csv->parse(file_get_contents($filepath))) {
 			die("EEEEEEEEEEEERRRRORRRR");
 		}
 
@@ -150,6 +150,7 @@ class ImageListCsv {
 			if ($this->csv->data[$i] === null) {
 				echo "El bug aqui!!!<br /><br />\n\n";
 				print_r($this->csv->data);
+				die();
 			}
 			if (!array_key_exists("desc", $this->csv->data[$i]))
 				$this->csv->data[$i]["desc"] = "";
