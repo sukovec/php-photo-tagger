@@ -6,9 +6,16 @@ define("TAG_RES", "RES");
 
 class TagWork {
 	private $basetags;
+	private $tagkeys;
 	public function __construct() {
 		$src = file(PHPATH . '/tags.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
+		$this->tagkeys = array();
+		$tkfile = file(PHPATH . "/tagkeys.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		foreach($tkfile as $tk) {
+			$tk = explode(" ", $tk);
+			$this->tagkeys[$tk[1]] = $tk[0];
+		}
 
 		$this->basetags = array();
 		foreach ($src as $tg) {
@@ -36,6 +43,9 @@ class TagWork {
 			if (array_key_exists($tagobj->getBaseName(), $used)) {
 				$tagobj->setSelected($used[$tagobj->getBaseName()]);
 			}
+
+			if (array_key_exists($tagobj->getBaseName(), $this->tagkeys))
+				$tagobj->setKey($this->tagkeys[$tagobj->getBaseName()]);
 		}
 
 		return $ret;
@@ -51,6 +61,9 @@ class TagWork {
 		$ret = new Tag($this->basetags[$bs]);
 		if ($sel !== null)
 			$ret->setSelected($sel);
+
+		if (array_key_exists($bs, $this->tagkeys))
+			$ret->setKey($this->tagkeys[$bs]);
 
 		return $ret;
 	}
@@ -75,6 +88,8 @@ class Tag {
 	private $checked, $tag, $selected;
 	private $subs;
 	private $hidden;
+	private $asckey;
+
 	public function __construct(string $tagline, bool $checked = false) {
 		if ($tagline[0] == "!") {
 			$this->hidden = true;
@@ -97,6 +112,7 @@ class Tag {
 				$this->subs[] = $cur;
 			}
 		}
+		$this->asckey = null;
 	}
 
 	public function __toString() {
@@ -152,6 +168,16 @@ class Tag {
 			return $this->getBaseName();
 	}
 
+	public function setKey($key) {
+		$this->asckey = $key;
+	}
+
+	public function getKey() {
+		return $this->asckey;
+	}
+
+	/* STATIC */
+	
 	public static function parseBaseName(string $tag) {
 		$tg = explode(":", $tag);
 		return $tg[0][0] == "!" ? substr($tg[0], 1) : $tg[0];

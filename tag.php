@@ -39,10 +39,20 @@ foreach($tags as $tag) {
 			echo "<input type='hidden' name='tag_{$basename}' value='${basename}' />";
 		// else - noop
 	}
-	else
-		echo "<div class='cbox'><input type='checkbox' ${act} name='tag_${basename}' value='${basename}' id='tag_${basename}' /><label for='tag_${basename}'>${display}</label></div>";
+	else {
+		$onload = "";
+		$key = $tag->getKey();
+		$keyinfo = "";
+		if ($key !== null) {
+			$data = " data-asckey='$key'";
+			$keyinfo = "<span class='asckeyinfo'>${key}: </span>";
+		}
+
+		echo "<div class='cbox'><input ${data}type='checkbox' ${act} name='tag_${basename}' value='${basename}' id='tag_${basename}' /><label for='tag_${basename}'>${keyinfo}${display}</label></div>";
+	}
 
 }
+echo "<script>asociateKeyPresses()</script>";
 echo "<br /><div class='descript'><input type='text' name='image_description' value='", $img->getDesc(),"' /><input type='submit' value='yeah' /></div>";
 
 echo form_end();
